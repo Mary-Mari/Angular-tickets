@@ -1,0 +1,37 @@
+<div class="d-flex flex-column">
+       <div>
+           <span class="mx-3">{{loginText}}</span>
+           <input type="text"
+               pInputText
+               [(ngModel)]="login"/>
+       </div>
+   
+       <div>
+           <span class="mx-3">{{pswdText}}</span>
+           <input type="password"
+               class="mt-3"
+               pInputText
+               [ngClass]="{'input-error': !psw}"
+               [(ngModel)]="psw"/>
+       </div>
+
+       <div class="mt-3">
+        <span class="mx-3">{{confirmPsw}}</span>
+        <input type="password"
+        [ngClass]="{'input-error': !psw2}"
+         pInputText [(ngModel)]="psw2"/>
+      </div>
+   
+       <div class="mt-3">
+              <p-checkbox [(ngModel)]="saveToLocalStorage"
+              label="Сохранить пользователя в локальном хранилище"
+              name="saveToLocalStorage" [binary]="true"></p-checkbox>
+          </div>
+       
+       <div class="mt-5 d-flex justify-content-center">
+           <button (click)="onRegister($event)"
+               type="button"
+               class="btn btn-success">{{regisTextButton}}</button>
+       </div>
+   </div>
+   
