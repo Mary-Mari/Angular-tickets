@@ -3,4 +3,5 @@ export interface IUser {
  email?: string;
  psw: string;
  username?: string;
+ name?: string;
 }
