@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges} from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { IUser } from 'src/app/models/users';
 import { UserService } from 'src/app/services/user/user.service'; 
@@ -10,13 +10,15 @@ import { IMenuType } from '../../../models/menuType';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
   items: MenuItem[];
-  user: IUser; // Объявляем свойство user типа IUser
+  user: IUser;
+  time: Date;
+  private timerInterval: number;
+  private settingsActive = false;  // Инициализация здесь
 
   @Input() menuType: IMenuType;
 
-  settingsActive: boolean = false; // Инициализация здесь
   
   constructor(private userService: UserService,//// Инжектируем сервис UserService
 )
@@ -27,15 +29,22 @@ export class HeaderComponent implements OnInit {
 
    // Получаем текущего пользователя из сервиса UserService
    this.user = this.userService.getUser();
-   this.items = this.initMenuItems();
+    this.items = this.initMenuItems();
+    this.timerInterval = window.setInterval(() => {
+      this.time = new Date();
+    }, 1000);
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if ('menuType' in changes) {
-      this.settingsActive = this.menuType?.type === 'extended';
-      this.items = this.initMenuItems();
+  ngOnDestroy(): void {
+    if (this.timerInterval) {
+      window.clearInterval(this.timerInterval);
     }
   }
+
+  ngOnChanges(ev: SimpleChanges): void {
+    this.settingsActive = this.menuType?.type === "extended";
+    this.items = this.initMenuItems();
+  }
+  
   initMenuItems(): MenuItem[] {
     return [
       {

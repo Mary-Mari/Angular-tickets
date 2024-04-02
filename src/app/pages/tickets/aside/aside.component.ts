@@ -24,9 +24,11 @@ export class AsideComponent implements OnInit {
       {type: 'custom', label : 'Обычное'},
       {type: 'extended', label : 'Расширенное'}
     ];
+  }
 
-     // Инициализация выбранного типа меню
-     this.selectedMenuType = this.menuTypes[0]; // Выберем первый тип меню по умолчанию
+  onSelectType(menuType: IMenuType): void {
+    this.selectedMenuType = menuType;
+    this.updateMenuType.emit(menuType);
   }
 
   changeType(event: any): void {
