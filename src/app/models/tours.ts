@@ -5,4 +5,14 @@ export interface ITour {
     price: string;
     img: string;
     id: string;
+    type: string;
+    date: string
    }
+
+
+
+   export interface ITourTypeSelect {
+    label?: string,
+    value?: string,
+    date?: string
+  }

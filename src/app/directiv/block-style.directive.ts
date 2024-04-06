@@ -10,7 +10,12 @@ export class BlockStyleDirective implements AfterViewInit {
   private items: HTMLElement[];
   private currentIndex = 0;
 
+
   constructor(private elementRef: ElementRef) {}
+
+  updateItems(): void {
+    this.items = this.elementRef.nativeElement.querySelectorAll('.ticket-item');
+  }
 
   ngAfterViewInit(): void {
     this.items = this.elementRef.nativeElement.querySelectorAll(this.selector);

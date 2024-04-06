@@ -16,6 +16,7 @@ export class TicketsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

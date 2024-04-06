@@ -22,10 +22,10 @@ export class TicketItemComponent implements OnInit {
     const queryIdParam = this.route.snapshot.queryParamMap.get('id');
 
     const paramValueId = routeIdParam || queryIdParam;
-    if (paramValueId) {
-      const ticketStorage = this.ticketStorage.getStorage()
-      this.ticket = ticketStorage.find((el) => el.id === paramValueId);
-      console.log('this.ticket', this.ticket)
+  if (paramValueId && this.ticketStorage) { // Добавляем проверку на существование ticketStorage
+    const ticketStorage = this.ticketStorage.getStorage();
+    this.ticket = ticketStorage.find((el) => el.id === paramValueId);
+    console.log('this.ticket', this.ticket);
     }
   }
 

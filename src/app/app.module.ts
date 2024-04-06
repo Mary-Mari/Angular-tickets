@@ -4,19 +4,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from '@angular/common/http';
-import { SettingsComponent } from './pages/settings/settings/settings.component';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SettingsComponent,
+    AppComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
